@@ -17,7 +17,7 @@ environments:
         namespace: default
         annotations:
           moniker.spinnaker.io/application: test
-      spec: secgrp
+      spec:
         replicas: 1
         selector:
           matchLabels:
