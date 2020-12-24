@@ -6,6 +6,10 @@ artifacts:
   type: docker
   reference: my-docker-artifact
   tagVersionStrategy: semver-tag
+- name: nimak/spinnaker-keel
+  type: docker
+  reference: my-keel-artifact
+  tagVersionStrategy: semver-tag
 environments:
 - name: testing
   locations:
