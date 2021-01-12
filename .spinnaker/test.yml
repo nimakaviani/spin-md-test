@@ -1,42 +1,43 @@
 name: my-k8s-manifest
-application: test
+application: k8sapp
 serviceAccount: sekret-service-account@spinnaker-test.net
 artifacts:
 - name: nimak/helloworld
   type: docker
   reference: my-docker-artifact
   tagVersionStrategy: semver-tag
-- name: nimak/spinnaker-keel
-  type: docker
-  reference: my-keel-artifact
-  tagVersionStrategy: semver-tag
 environments:
-- name: testing
-  locations:
-    account: my-k8s-west-account
-    regions: []
-  resources:
-  - kind: k8s/resource@v1
-    spec:
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: yollo-prod
-        namespace: default
-        annotations:
-          moniker.spinnaker.io/application: test
+  - name: testing
+    locations:
+      account: my-k8s-west-account
+      regions: []
+    resources:
+    - kind: k8s/resource@v1
       spec:
-        replicas: 1
-        selector:
-          matchLabels:
-            app: hello
+        container:
+          reference: my-docker-artifact
         template:
+          apiVersion: apps/v1
+          kind: Deployment
           metadata:
-            labels:
-              app: hello
+            name: yollo-testing
+            namespace: default
+            annotations:
+              moniker.spinnaker.io/application: spinmd
           spec:
-            containers:
-            - name: hello
-              image: paulbouwer/hello-kubernetes:1.8
-              ports:
-              - containerPort: 8080
+            replicas: 1
+            selector:
+              matchLabels:
+                app: hello
+            template:
+              metadata:
+                labels:
+                  app: hello
+                annotations:
+                  moniker.spinnaker.io/application: spinmd  
+              spec:
+                containers:
+                - name: hello
+                  image: xxx
+                  ports:
+                  - containerPort: 8080
