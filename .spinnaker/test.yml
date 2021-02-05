@@ -20,7 +20,7 @@ environments:
           apiVersion: v1
           kind: Service
           metadata:
-            name: hello-kubernetes
+            name: yollow-svc
             namespace: default
             annotations:
               app: hello
@@ -42,7 +42,7 @@ environments:
           apiVersion: apps/v1
           kind: Deployment
           metadata:
-            name: yollo-testing
+            name: yollo-deply
             namespace: default            
           spec:
             replicas: 1
