@@ -16,14 +16,14 @@ environments:
       spec:
         container:
           reference: my-docker-artifact
+        metadata:
+          application: spinmd
         template:
           apiVersion: apps/v1
           kind: Deployment
           metadata:
             name: yollo-testing
-            namespace: default
-            annotations:
-              moniker.spinnaker.io/application: spinmd
+            namespace: default            
           spec:
             replicas: 1
             selector:
@@ -32,12 +32,10 @@ environments:
             template:
               metadata:
                 labels:
-                  app: hello
-                annotations:
-                  moniker.spinnaker.io/application: spinmd  
+                  app: hello                
               spec:
                 containers:
                 - name: hello
-                  image: xxx
+                  image: my-docker-artifact
                   ports:
                   - containerPort: 8080
