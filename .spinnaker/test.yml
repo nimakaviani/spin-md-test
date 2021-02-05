@@ -13,24 +13,25 @@ environments:
       regions: []
     resources:
     - kind: k8s/resource@v1
-      metadata:
-        application: spinmd
       spec:
-        apiVersion: v1
-        kind: Service
         metadata:
-          name: hello-kubernetes
-          namespace: default
-          annotations:
-            app: hello
-        spec:
-          type: LoadBalancer
-          externalTrafficPolicy: Cluster
-          ports:
-          - port: 80
-            targetPort: 8080
-          selector:
-            app: hello
+          application: spinmd
+        template:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: hello-kubernetes
+            namespace: default
+            annotations:
+              app: hello
+          spec:
+            type: LoadBalancer
+            externalTrafficPolicy: Cluster
+            ports:
+            - port: 80
+              targetPort: 8080
+            selector:
+              app: hello
     - kind: k8s/resource@v1
       spec:
         container:
