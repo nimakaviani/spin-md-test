@@ -24,7 +24,7 @@ environments:
             namespace: default
             annotations:
               app: hello
-          spec:
+          spec: &svcspec
             type: LoadBalancer
             externalTrafficPolicy: Cluster
             ports:
@@ -44,7 +44,7 @@ environments:
           metadata:
             name: yollo-deply
             namespace: default            
-          spec:
+          spec: &depspec
             replicas: 3
             selector:
               matchLabels:
@@ -59,3 +59,37 @@ environments:
                   image: my-docker-artifact
                   ports:
                   - containerPort: 8080
+  - name: prod
+    locations:
+      account: my-k8s-west-account
+      regions: []
+    resources:
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: yollo-svc
+            namespace: prod
+            annotations:
+              app: hello
+          spec:
+            << : *svcspec
+            
+    - kind: k8s/resource@v1
+      spec:
+        container:
+          reference: my-docker-artifact
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: yollo-deply
+            namespace: prod            
+          spec: 
+            << : *depspec                 
