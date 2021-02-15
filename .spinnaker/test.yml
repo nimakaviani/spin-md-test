@@ -59,7 +59,7 @@ environments:
                   image: my-docker-artifact
                   ports:
                   - containerPort: 8080
-  - name: prod
+  - name: prodz
     locations:
       account: my-k8s-west-account
       regions: []
