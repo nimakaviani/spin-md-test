@@ -63,6 +63,8 @@ environments:
     locations:
       account: my-k8s-west-account
       regions: []
+    constraints:
+    - type: manual-judgement
     resources:
     - kind: k8s/resource@v1
       spec:
