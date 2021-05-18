@@ -7,7 +7,7 @@ artifacts:
   reference: my-docker-artifact
   tagVersionStrategy: semver-tag
 environments:
-  - name: testing
+  - name: test
     locations:
       account: my-k8s-west-account
       regions: []
