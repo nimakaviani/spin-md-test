@@ -7,6 +7,22 @@ artifacts:
   reference: my-docker-artifact
   tagVersionStrategy: semver-tag
 environments:
+  - name: helm
+    locations:
+      account: my-k8s-west-account
+      regions: []
+    resources:
+    - kind: k8s/credential@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          metadata:
+            namespace: default
+            type: git
+          data:
+            account: helm-repo
+
   - name: test
     locations:
       account: my-k8s-west-account
