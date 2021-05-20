@@ -36,7 +36,7 @@ environments:
             interval: 5m
             url: https://github.com/nemocaviani/hello-helm
             ref:
-              branch: master
+              branch: main
             secretRef:
               name: git-helm-repo
 
