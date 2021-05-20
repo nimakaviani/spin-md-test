@@ -49,11 +49,13 @@ environments:
             name: my-release
           spec:
             interval: 10m
-            chart: ./chart/hello
-            sourceRef:
-              kind: GitRepository
-              name: my-repository
-              namespace: default
+            chart:
+              spec:
+                chart: ./chart/hello
+                sourceRef:
+                  kind: GitRepository
+                  name: my-repository
+                  namespace: default
 
   - name: test
     locations:
