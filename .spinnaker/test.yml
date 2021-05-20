@@ -109,6 +109,31 @@ environments:
                   image: my-docker-artifact
                   ports:
                   - containerPort: 8080
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: bad-deply
+            namespace: default
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: hello
+            template:
+              metadata:
+                labels:
+                  app: hello
+              spec:
+                containers:
+                - name: hello
+                  image: nimak/img:wrong
+                  ports:
+                  - containerPort: 8080
   - name: prod
     locations:
       account: my-k8s-west-account
