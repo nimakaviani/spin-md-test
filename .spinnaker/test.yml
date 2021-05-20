@@ -34,7 +34,7 @@ environments:
             namespace: default
           spec:
             interval: 5m
-            url: https://github.com/nimakaviani/hello-helm
+            url: https://github.com/nemocaviani/hello-helm
             ref:
               branch: master
             secretRef:
