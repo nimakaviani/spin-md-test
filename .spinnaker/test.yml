@@ -39,6 +39,20 @@ environments:
               branch: main
             secretRef:
               name: git-helm-repo
+    - kind: k8s/helm@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          metadata:
+            namespace: default
+            name: my-release
+          spec:
+            chart: ./chart/hello
+            sourceRef:
+              kind: GitRepository
+              name: my-repository
+              namespace: default
 
   - name: test
     locations:
