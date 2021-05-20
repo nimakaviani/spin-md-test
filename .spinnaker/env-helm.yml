@@ -1,0 +1,54 @@
+name: my-k8s-manifest-helm
+application: spinmd
+serviceAccount: sekret-service-account@spinnaker-test.net
+environments:
+  - name: helm
+    locations:
+      account: my-k8s-west-account
+      regions: []
+    resources:
+    - kind: k8s/credential@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          metadata:
+            namespace: default
+            type: git
+          data:
+            account: helm-repo
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: source.toolkit.fluxcd.io/v1beta1
+          kind: GitRepository
+          metadata:
+            name: my-repository
+            namespace: default
+          spec:
+            interval: 5m
+            url: https://github.com/nemocaviani/hello-helm
+            ref:
+              branch: main
+            secretRef:
+              name: git-helm-repo
+    - kind: k8s/helm@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          metadata:
+            namespace: default
+            name: my-release
+          spec:
+            interval: 10m
+            chart:
+              spec:
+                chart: ./chart/hello
+                sourceRef:
+                  kind: GitRepository
+                  name: my-repository
+                  namespace: default
+
