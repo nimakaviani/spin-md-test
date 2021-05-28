@@ -49,13 +49,13 @@ environments:
             name: my-release
           spec:
             interval: 10m
+            values:
+              image:
+                repository: nimak/helloworld
+                tag: 1.7
             chart:
               spec:
                 chart: ./chart/hello
-                values:
-                  image:
-                    repository: nimak/helloworld
-                    tag: 1.7
                 sourceRef:
                   kind: GitRepository
                   name: my-repository
