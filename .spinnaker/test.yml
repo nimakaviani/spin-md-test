@@ -52,6 +52,10 @@ environments:
             chart:
               spec:
                 chart: ./chart/hello
+                values:
+                  image:
+                    repository: nimak/helloworld
+                    tag: 1.7
                 sourceRef:
                   kind: GitRepository
                   name: my-repository
