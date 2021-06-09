@@ -60,6 +60,33 @@ environments:
                   kind: GitRepository
                   name: my-repository
                   namespace: default
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: game-demo
+            namespace: default
+          data:
+            ranking: "3"
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: spinmd
+        template:
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: secret-sa-sample
+            namespace: default
+            annotations:
+              kubernetes.io/service-account.name: "sa-name"
+          type: kubernetes.io/service-account-token
+          data:
+            extra: YmFyCg==
 
   - name: test
     locations:
