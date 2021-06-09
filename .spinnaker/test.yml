@@ -19,8 +19,8 @@ environments:
         template:
           metadata:
             namespace: default
-            type: git
           data:
+            type: git
             account: helm-repo
     - kind: k8s/resource@v1
       spec:
