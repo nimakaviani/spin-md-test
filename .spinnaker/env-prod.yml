@@ -1,64 +1,64 @@
 name: my-k8s-manifest-prod
-application: spinmd
+application: immersion-day
 serviceAccount: sekret-service-account@spinnaker-test.net
-artifacts:
-- name: nimak/helloworld
-  type: docker
-  reference: my-docker-artifact
-  tagVersionStrategy: semver-tag
 environments:
   - name: prod
     locations:
       account: my-k8s-west-account
       regions: []
-    constraints:
-    - type: manual-judgement
     resources:
     - kind: k8s/resource@v1
       spec:
         metadata:
-          application: spinmd
+          application: immersion-day
         template:
           apiVersion: v1
-          kind: Service
+          kind: Namespace
           metadata:
-            name: yollo-svc
-            namespace: prod
-            annotations:
-              app: hello
-          spec:
-            type: LoadBalancer
-            externalTrafficPolicy: Cluster
-            ports:
-            - port: 80
-              targetPort: 8080
-            selector:
-              app: hello
-    - kind: k8s/resource@v1
-      spec:
-        container:
-          reference: my-docker-artifact
-        metadata:
-          application: spinmd
-        template:
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: yollo-deply
-            namespace: prod
-          spec: 
-            replicas: 3
-            selector:
-              matchLabels:
-                app: hello
-            template:
-              metadata:
-                labels:
-                  app: hello
-              spec:
-                containers:
-                - name: hello
-                  image: my-docker-artifact
-                  ports:
-                  - containerPort: 8080
+            name: imday
+  #   - kind: k8s/resource@v1
+  #     spec:
+  #       metadata:
+  #         application: immersion-day
+  #       template:
+  #         apiVersion: v1
+  #         kind: Service
+  #         metadata:
+  #           name: yollo-svc
+  #           namespace: imday
+  #           annotations:
+  #             app: hello
+  #         spec:
+  #           type: LoadBalancer
+  #           externalTrafficPolicy: Cluster
+  #           ports:
+  #           - port: 80
+  #             targetPort: 8080
+  #           selector:
+  #             app: hello
+  #   - kind: k8s/resource@v1
+  #     spec:
+  #       metadata:
+  #         application: immersion-day
+  #       template:
+  #         apiVersion: apps/v1
+  #         kind: Deployment
+  #         metadata:
+  #           name: yollo-deply
+  #           namespace: imday
+  #         spec:
+  #           replicas: 1
+  #           selector:
+  #             matchLabels:
+  #               app: hello
+  #           template:
+  #             metadata:
+  #               labels:
+  #                 app: hello
+  #             spec:
+  #               containers:
+  #               - name: hello
+  #                 image: nimak/helloworld:latest
+  #                 ports:
+  #                 - containerPort: 8080
 
