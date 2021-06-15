@@ -1,5 +1,5 @@
 name: my-k8s-manifest-prod
-application: immersion-day
+application: imday
 serviceAccount: sekret-service-account@spinnaker-test.net
 environments:
   - name: prod
@@ -10,7 +10,7 @@ environments:
     - kind: k8s/resource@v1
       spec:
         metadata:
-          application: immersion-day
+          application: imday
         template:
           apiVersion: v1
           kind: Namespace
@@ -19,7 +19,7 @@ environments:
   #   - kind: k8s/resource@v1
   #     spec:
   #       metadata:
-  #         application: immersion-day
+  #         application: imday
   #       template:
   #         apiVersion: v1
   #         kind: Service
@@ -39,7 +39,7 @@ environments:
   #   - kind: k8s/resource@v1
   #     spec:
   #       metadata:
-  #         application: immersion-day
+  #         application: imday
   #       template:
   #         apiVersion: apps/v1
   #         kind: Deployment
