@@ -16,49 +16,49 @@ environments:
           kind: Namespace
           metadata:
             name: imday
-  #   - kind: k8s/resource@v1
-  #     spec:
-  #       metadata:
-  #         application: imday
-  #       template:
-  #         apiVersion: v1
-  #         kind: Service
-  #         metadata:
-  #           name: yollo-svc
-  #           namespace: imday
-  #           annotations:
-  #             app: hello
-  #         spec:
-  #           type: LoadBalancer
-  #           externalTrafficPolicy: Cluster
-  #           ports:
-  #           - port: 80
-  #             targetPort: 8080
-  #           selector:
-  #             app: hello
-  #   - kind: k8s/resource@v1
-  #     spec:
-  #       metadata:
-  #         application: imday
-  #       template:
-  #         apiVersion: apps/v1
-  #         kind: Deployment
-  #         metadata:
-  #           name: yollo-deply
-  #           namespace: imday
-  #         spec:
-  #           replicas: 1
-  #           selector:
-  #             matchLabels:
-  #               app: hello
-  #           template:
-  #             metadata:
-  #               labels:
-  #                 app: hello
-  #             spec:
-  #               containers:
-  #               - name: hello
-  #                 image: nimak/helloworld:latest
-  #                 ports:
-  #                 - containerPort: 8080
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: imday
+        template:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: yollo-svc
+            namespace: imday
+            annotations:
+              app: hello
+          spec:
+            type: LoadBalancer
+            externalTrafficPolicy: Cluster
+            ports:
+            - port: 80
+              targetPort: 8080
+            selector:
+              app: hello
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: imday
+        template:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: yollo-deply
+            namespace: imday
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: hello
+            template:
+              metadata:
+                labels:
+                  app: hello
+              spec:
+                containers:
+                - name: hello
+                  image: nimak/helloworld:latest
+                  ports:
+                  - containerPort: 8080
 
