@@ -126,7 +126,7 @@ environments:
             name: yollo-deply
             namespace: default            
           spec:
-            replicas: 2
+            replicas: 1
             selector:
               matchLabels:
                 app: hello
