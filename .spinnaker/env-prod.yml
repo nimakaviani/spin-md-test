@@ -7,15 +7,15 @@ environments:
       account: my-k8s-west-account
       regions: []
     resources:
-    # - kind: k8s/resource@v1
-    #   spec:
-    #     metadata:
-    #       application: imday
-    #     template:
-    #       apiVersion: v1
-    #       kind: Namespace
-    #       metadata:
-    #         name: imday
+    - kind: k8s/resource@v1
+      spec:
+        metadata:
+          application: imday
+        template:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: imday
     # - kind: k8s/resource@v1
     #   spec:
     #     metadata:
